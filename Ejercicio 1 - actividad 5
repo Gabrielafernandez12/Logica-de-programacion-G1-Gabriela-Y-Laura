@@ -1,0 +1,9 @@
+N = int(input("ingrese un numero entero positivo: "))
+suma = 0
+For i in range(1,N+1):
+print("i:" i, "| Suma antes:", suma )
+Si i % 2 ! = 0:
+    Suma = suma + i
+    print("suma despues:", Suma)
+    print("-")
+    print("Resultado final:", suma)
