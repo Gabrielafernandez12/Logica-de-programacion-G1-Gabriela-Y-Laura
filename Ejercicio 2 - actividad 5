@@ -1,20 +1,27 @@
+function calcularDesviacion(datos) {
+    // Validar que el array no esté vacío
+    if (!datos || datos.length === 0) {
+        console.error("Error: El array no puede estar vacío");
+        return null;
+    }
+
+    // Calcular la suma usando reduce
+    const suma = datos.reduce((acc, val) => acc + val, 0);
+    const promedio = suma / datos.length;
+
+    // Calcular la suma de cuadrados de las desviaciones
+    const sumaDeCuadrados = datos.reduce((acc, val) => 
+        acc + Math.pow(val - promedio, 2), 0
+    );
+
+    // Calcular y retornar la desviación estándar
+    return Math.sqrt(sumaDeCuadrados / datos.length);
+}
+
+// Ejemplo de uso
 const datos = [2, 4, 6];
+const desviacion = calcularDesviacion(datos);
 
-let suma = 0;
-let sumaDeCuadrados = 0;
-
-// Sumar datos
-for (let i = 0; i < datos.length; i++) {
-    suma += datos[i];
+if (desviacion !== null) {
+    console.log("Desviación estándar:", desviacion);
 }
-
-let promedio = suma / datos.length;
-
-// Sumar cuadrados
-for (let i = 0; i < datos.length; i++) {
-    sumaDeCuadrados += Math.pow(datos[i] - promedio, 2);
-}
-
-let desviacion = Math.sqrt(sumaDeCuadrados / datos.length);
-
-console.log("Desviación estándar:", desviacion);
