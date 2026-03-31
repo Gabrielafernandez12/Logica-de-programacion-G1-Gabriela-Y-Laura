@@ -1,31 +1,16 @@
-Inicio
+const data = [/* your data here */];
 
-    Definir n, i Como Entero
-    Definir dato, suma, promedio, sumaCuadrados, desviacion Como Real
+let sum = 0;
+let sumOfSquares = 0;
 
-    Escribir "Ingrese la cantidad de datos:"
-    Leer n
+for (let i = 0; i < data.length; i++) {
+    sum += data[i];
+    sumOfSquares += data[i] * data[i];
+}
 
-    suma <- 0
+const average = sum / data.length;
+const standardDeviation = Math.sqrt((sumOfSquares / data.length) - (average * average));
 
-    Para i <- 1 Hasta n Hacer
-        Escribir "Ingrese un dato positivo:"
-        Leer dato
-        suma <- suma + dato
-    FinPara
-
-    promedio <- suma / n
-
-    sumaCuadrados <- 0
-
-    Para i <- 1 Hasta n Hacer
-        Escribir "Ingrese nuevamente el dato:"
-        Leer dato
-        sumaCuadrados <- sumaCuadrados + (dato - promedio)^2
-    FinPara
-
-    desviacion <- Raiz(sumaCuadrados / n)
-
-    Escribir "La desviación típica es: ", desviacion
-
-Fin
+console.log('Sum:', sum);
+console.log('Average:', average);
+console.log('Standard Deviation:', standardDeviation);
