@@ -1,16 +1,20 @@
-const data = [/* your data here */];
+const datos = [2, 4, 6];
 
-let sum = 0;
-let sumOfSquares = 0;
+let suma = 0;
+let sumaDeCuadrados = 0;
 
-for (let i = 0; i < data.length; i++) {
-    sum += data[i];
-    sumOfSquares += data[i] * data[i];
+// Sumar datos
+for (let i = 0; i < datos.length; i++) {
+    suma += datos[i];
 }
 
-const average = sum / data.length;
-const standardDeviation = Math.sqrt((sumOfSquares / data.length) - (average * average));
+let promedio = suma / datos.length;
 
-console.log('Sum:', sum);
-console.log('Average:', average);
-console.log('Standard Deviation:', standardDeviation);
+// Sumar cuadrados
+for (let i = 0; i < datos.length; i++) {
+    sumaDeCuadrados += Math.pow(datos[i] - promedio, 2);
+}
+
+let desviacion = Math.sqrt(sumaDeCuadrados / datos.length);
+
+console.log("Desviación estándar:", desviacion);
