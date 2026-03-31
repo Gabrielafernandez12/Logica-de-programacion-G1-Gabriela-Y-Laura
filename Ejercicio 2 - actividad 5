@@ -1,0 +1,31 @@
+Inicio
+
+    Definir n, i Como Entero
+    Definir dato, suma, promedio, sumaCuadrados, desviacion Como Real
+
+    Escribir "Ingrese la cantidad de datos:"
+    Leer n
+
+    suma <- 0
+
+    Para i <- 1 Hasta n Hacer
+        Escribir "Ingrese un dato positivo:"
+        Leer dato
+        suma <- suma + dato
+    FinPara
+
+    promedio <- suma / n
+
+    sumaCuadrados <- 0
+
+    Para i <- 1 Hasta n Hacer
+        Escribir "Ingrese nuevamente el dato:"
+        Leer dato
+        sumaCuadrados <- sumaCuadrados + (dato - promedio)^2
+    FinPara
+
+    desviacion <- Raiz(sumaCuadrados / n)
+
+    Escribir "La desviación típica es: ", desviacion
+
+Fin
