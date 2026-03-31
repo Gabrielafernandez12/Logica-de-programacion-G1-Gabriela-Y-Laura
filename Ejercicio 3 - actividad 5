@@ -1,14 +1,29 @@
-n = int(input("Ingrese la cantidad de números: "))
+def main():
+    # Ask for user input
+    user_input = input("Enter a number: ")
 
-for i in range(n):
-    numero = int(input("Ingrese un número entero positivo: "))
+    # Validate input
+    if not validate_input(user_input):
+        print("Invalid input! Please enter a valid number.")
+        return
 
-    raiz = numero ** 0.5
-    cuadrado = numero ** 2
-    cubo = numero ** 3
+    number = int(user_input)
+    result = perform_calculation(number)
+    print(f'The result of the calculation is: {result}')
 
-    print("Número:", numero)
-    print("Raíz cuadrada:", raiz)
-    print("Cuadrado:", cuadrado)
-    print("Cubo:", cubo)
-    print("-------------------")
+
+def validate_input(user_input):
+    try:
+        int(user_input)
+        return True
+    except ValueError:
+        return False
+
+
+def perform_calculation(number):
+    # Example calculation, modify as needed
+    return number * 2  # Placeholder for a calculation
+
+
+if __name__ == '__main__':
+    main()
