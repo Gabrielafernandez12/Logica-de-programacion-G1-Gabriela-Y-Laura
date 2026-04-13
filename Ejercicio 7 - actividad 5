@@ -1,0 +1,23 @@
+# Entrada de datos
+nombre = input("Nombre del granjero: ")
+tipo = int(input("Tipo de fumigación (1, 2, 3, 4): "))
+hectareas = float(input("Número de hectáreas: "))
+
+# Determinar costo por hectárea
+if tipo == 1: precio_h = 10
+elif tipo == 2: precio_h = 15
+elif tipo == 3: precio_h = 20
+elif tipo == 4: precio_h = 30
+
+costo = hectareas * precio_h
+
+# Primer descuento (Superficie > 1000 ha)
+if hectareas > 1000:
+    costo = costo * 0.95
+
+# Segundo descuento (Costo > 3000 USD)
+if costo > 3000:
+    excedente = costo - 3000
+    costo = 3000 + (excedente * 0.90)
+
+print(f"Granjero: {nombre}, Valor a pagar: {costo}")
