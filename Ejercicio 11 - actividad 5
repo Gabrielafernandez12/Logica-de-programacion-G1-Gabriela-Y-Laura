@@ -1,0 +1,18 @@
+N = int(input("Cantidad de estudiantes: "))
+suma = 0
+aprobados = 0
+reprobados = 0
+max_nota = -1
+min_nota = 101
+
+for i in range(N):
+    nota = float(input("Nota: "))
+    suma += nota
+    if nota >= 60: aprobados += 1
+    else: reprobados += 1
+    
+    if nota > max_nota: max_nota = nota
+    if nota < min_nota: min_nota = nota
+
+print(f"Promedio: {suma/N}, Aprobados: {aprobados}, Reprobados: {reprobados}")
+print(f"Máxima: {max_nota}, Mínima: {min_nota}")
