@@ -1,0 +1,75 @@
+"""
+Algoritmo: Detección de Triángulos Rectángulos
+===============================================
+Determina cuántos tríos de valores (ternas) en un
+conjunto de datos representan triángulos rectángulos
+usando el teorema de Pitágoras: a² + b² = c²
+"""
+
+
+def es_triangulo_rectangulo(a: float, b: float, c: float) -> bool:
+    """
+    Verifica si tres valores forman un triángulo rectángulo.
+    Ordena los valores para que c siempre sea la hipotenusa.
+    """
+    lados = sorted([a, b, c])
+    a, b, c = lados[0], lados[1], lados[2]
+    return round(a**2 + b**2, 10) == round(c**2, 10)
+
+
+def detectar_triangulos_rectangulos(datos: list) -> dict:
+    """
+    Recorre todas las ternas posibles del conjunto de datos
+    y cuenta cuántas forman triángulos rectángulos.
+
+    Args:
+        datos: Lista de números positivos.
+
+    Returns:
+        Diccionario con el conteo y la lista de ternas válidas.
+    """
+    if len(datos) < 3:
+        raise ValueError("Se necesitan al menos 3 valores en el conjunto.")
+
+    if any(n <= 0 for n in datos):
+        raise ValueError("Todos los valores deben ser positivos.")
+
+    ternas_rectangulas = []
+    total_ternas = 0
+
+    # Recorrer todas las combinaciones de ternas (sin repetir)
+    for i in range(len(datos)):
+        for j in range(i + 1, len(datos)):
+            for k in range(j + 1, len(datos)):
+                total_ternas += 1
+                a, b, c = datos[i], datos[j], datos[k]
+
+                if es_triangulo_rectangulo(a, b, c):
+                    ternas_rectangulas.append((a, b, c))
+
+    return {
+        "total_ternas": total_ternas,
+        "cantidad_rectangulos": len(ternas_rectangulas),
+        "ternas_rectangulas": ternas_rectangulas,
+    }
+
+
+def mostrar_resultados(datos: list, resultado: dict) -> None:
+    """Imprime los resultados con formato."""
+    print(f"\nDatos: {datos}")
+    print("=" * 45)
+    print(f"  Total de ternas evaluadas : {resultado['total_ternas']}")
+    print(f"  Triángulos rectángulos    : {resultado['cantidad_rectangulos']}")
+    print("-" * 45)
+
+    if resultado["ternas_rectangulas"]:
+        print("  Ternas que son triángulos rectángulos:")
+        for terna in resultado["ternas_rectangulas"]:
+            lados = sorted(terna)
+            a, b, c = lados[0], lados[1], lados[2]
+            print(f"    ({a}, {b}, {c})  →  {a}² + {b}² = {c}²")
+    else:
+        print("  Ninguna terna forma un triángulo rectángulo.")
+
+    print("=" * 45)
+
