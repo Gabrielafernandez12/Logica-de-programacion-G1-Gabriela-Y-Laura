@@ -1,0 +1,64 @@
+
+def calcular_retencion(salario: float, num_hijos: int) -> float:
+    """
+    Determina el porcentaje de retención según las reglas de negocio.
+
+    Salario < 300.000:
+      - Hijos > 6  → 0% de retención
+      - Hijos <= 6 → retención = (6 - hijos) / 2  %
+
+    Salario >= 300.000:
+      - Hijos < 3  → 3% de retención
+      - Hijos >= 3 → retención = 10 / hijos  %
+    """
+    if salario < 300_000:
+        if num_hijos > 6:
+            porcentaje = 0.0
+        else:
+            porcentaje = (6 - num_hijos) / 2
+    else:
+        if num_hijos < 3:
+            porcentaje = 3.0
+        else:
+            porcentaje = 10 / num_hijos
+
+    return porcentaje
+
+
+def calcular_empleado(nombre: str, horas: float, valor_hora: float, num_hijos: int) -> dict:
+    """
+    Calcula todos los conceptos de nómina para un empleado.
+
+    Args:
+        nombre     : Nombre del empleado.
+        horas      : Horas trabajadas en el mes.
+        valor_hora : Salario por hora.
+        num_hijos  : Número de hijos del empleado.
+
+    Returns:
+        Diccionario con todos los conceptos calculados.
+    """
+    if horas < 0 or valor_hora < 0 or num_hijos < 0:
+        raise ValueError(f"Los valores de {nombre} no pueden ser negativos.")
+
+    # 1. Salario devengado
+    salario_devengado = horas * valor_hora
+
+    # 2. Porcentaje y valor de retención
+    porcentaje_retencion = calcular_retencion(salario_devengado, num_hijos)
+    valor_retencion = salario_devengado * (porcentaje_retencion / 100)
+
+    # 3. Subsidio por hijos
+    subsidio_hijos = num_hijos * SUBSIDIO_POR_HIJO
+
+    # 4. Total a pagar
+    total_pagar = salario_devengado - valor_retencion + subsidio_hijos
+
+    return {
+        "nombre": nombre,
+        "horas": horas,
+        "valor_hora": valor_hora,
+        "num_hijos": num_hijos,
+        "salario_devengado": salario_devengado,
+        "porcentaje_retencion": porcentaje_retencion,
+        "valor_retencion": valor_
