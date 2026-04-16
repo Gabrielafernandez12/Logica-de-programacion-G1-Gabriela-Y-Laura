@@ -1,0 +1,40 @@
+
+def encontrar_suma_max_min(datos: list) -> dict:
+    if not datos:
+        raise ValueError("El conjunto de datos no puede estar vacío.")
+    if any(n <= 0 for n in datos):
+        raise ValueError("Todos los valores deben ser positivos.")
+
+    maximo = datos[0]
+    minimo = datos[0]
+
+    for elemento in datos[1:]:
+        if elemento > maximo:
+            maximo = elemento
+        if elemento < minimo:
+            minimo = elemento
+
+    suma = maximo + minimo
+    return {"maximo": maximo, "minimo": minimo, "suma": suma}
+
+
+def mostrar_resultados(resultado: dict) -> None:
+    print("-" * 30)
+    print(f"  Máximo : {resultado['maximo']}")
+    print(f"  Mínimo : {resultado['minimo']}")
+    print(f"  Suma   : {resultado['suma']}")
+    print("-" * 30)
+
+
+if __name__ == "__main__":
+    datos1 = [4, 8, 15, 16, 23, 42]
+    print(f"\nDatos: {datos1}")
+    mostrar_resultados(encontrar_suma_max_min(datos1))
+
+    datos2 = [3.5, 9.1, 1.2, 7.8, 5.0]
+    print(f"\nDatos: {datos2}")
+    mostrar_resultados(encontrar_suma_max_min(datos2))
+
+    datos3 = [100]
+    print(f"\nDatos: {datos3}")
+    mostrar_resultados(encontrar_suma_max_min(datos3))
